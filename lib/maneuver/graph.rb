@@ -11,11 +11,11 @@ module Maneuver
     end
 
     def insert_nodes(*nodes)
-      nodes.each { |n| @nodes << n unless @nodes.include? n }
+      nodes.flatten.each { |n| @nodes << n unless @nodes.include? n }
     end
 
     def insert_edges(*edges)
-      edges.each do |e|
+      edges.flatten.each do |e|
         unless has_edge e
           @edges << e
           @nodes << e.to unless @nodes.include? e.to
