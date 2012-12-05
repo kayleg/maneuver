@@ -7,6 +7,5 @@ Gem::Specification.new do |s|
   s.authors     = ["Kayle Gishen"]
   s.email       = 'kayle@moremagic.io'
   s.files       = Dir["lib/**/*.rb"]
-  s.homepage    =
-    'http://rubygems.org/gems/maneuver'
+  s.homepage    = 'https://github.com/kayleg/maneuver'
 end
