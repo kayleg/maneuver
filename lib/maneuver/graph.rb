@@ -1,5 +1,6 @@
 module Maneuver
   class Graph
+    attr_reader :nodes, :edges
     def initialize(edges = [])
       @nodes = []
       @edges = edges.map { |e| Edge.new e[0], e[1] }
