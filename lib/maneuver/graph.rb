@@ -34,7 +34,18 @@ module Maneuver
     def path(from, to, search_algorithm, cost_algorithm = nil)
       search = Maneuver.search_algorithms[search_algorithm]
       raise "Unknown Search Algorithm: #{search_algorithm}" unless search
-      search.path(from, to, cost_algorithm)
+      search.path(self, from, to, cost_algorithm)
+    end
+
+    def edge_between(from, to)
+      from.outgoing_edges.select {|e| e.to == to && @edges.include?(e) }.first
+    end
+
+    def clone
+      g = self.class.new
+      g.insert_edges @edges
+      g.insert_nodes @nodes
+      return g
     end
   end
 end

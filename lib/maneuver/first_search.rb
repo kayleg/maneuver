@@ -27,21 +27,28 @@ module Maneuver
       nil
     end
 
-    def self.path(from, to, edge_algorithm = nil)
+    def self.path(graph, from, to, edge_algorithm = nil)
       return from if from == to
       self.prep_node
       nodes_to_check = []
       visited = [from]
-      from.outgoing_edges.each { |edge| edge.to._fs_parent = from; nodes_to_check << edge.to }
+      from.outgoing_edges.each do |edge|
+        if graph.edges.include? edge 
+          edge.to._fs_parent = from;
+          nodes_to_check << edge.to
+        end
+      end
       while !nodes_to_check.empty?
         node = self.get_node nodes_to_check
         return self.reconstruct_path(to) if node == to
         node.outgoing_edges.each do |e|
-          test = e.to
-          unless visited.include? test
-            test._fs_parent = node
-            visited << test
-            nodes_to_check.unshift test
+          if graph.edges.include? e
+            test = e.to
+            unless visited.include? test
+              test._fs_parent = node
+              visited << test
+              nodes_to_check.unshift test
+            end
           end
         end
       end
