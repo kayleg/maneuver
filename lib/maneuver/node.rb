@@ -1,7 +1,8 @@
 module Maneuver
   class Node
-    attr_reader :edges
-    def initialize(*args)
+    attr_reader :edges, :id
+    def initialize(id)
+      @id = id
       @edges = []
     end
 
