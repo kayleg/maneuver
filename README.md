@@ -29,7 +29,7 @@ graph = Maneuver::Graph.new [[n1, n2], [n2, n3], [n1, n4]]
 path = graph.path(n1, n4, :bfs) # from, to, method
 ```
 
-## Adding new search algorithm
+## Adding a new search algorithm
 
 Create a class extending from the Maneuver::SearchAlgorithm base and implement
 a self.path method.
@@ -52,8 +52,8 @@ path = graph.path(n1, n4, :my_algo)
 
 ## Edge weighting
 
-To add a weighting algorithm extend from Maneuver::CostAlgorithm and implement
-self.compute method. Cost's are memoized for a given pair of nodes, as a
+To add a weighting algorithm, extend from Maneuver::CostAlgorithm and implement
+self.compute method. Costs are memoized for a given pair of nodes, as a
 result Maneuver doesn't support changing a node's attributes.
 
 ```
