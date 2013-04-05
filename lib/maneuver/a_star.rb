@@ -2,7 +2,7 @@ require 'maneuver/search_algorithm'
 
 module Maneuver
   class AStar < SearchAlgorithm
-    def self.path(from, to, cost_algorithm)
+    def self.path(graph, from, to, cost_algorithm)
       raise "EdgeAlgorithm hueristic (param #3 => cost_algorithm) can not be nil" unless cost_algorithm
       open = [from]
       estimate = Maneuver.cost_algorithms[cost_algorithm]
@@ -32,9 +32,9 @@ module Maneuver
       min_value = Float::MAX
       min_key = nil
       set.each do |k|
-        m = hash[k] 
+        m = hash[k]
         if m < min_value
-          min_key = k 
+          min_key = k
           min_value = m
         end
       end
